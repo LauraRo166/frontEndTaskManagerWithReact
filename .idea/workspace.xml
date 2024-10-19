@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7711a3c-55d9-4214-941e-ad51cb86e4c7" name="Changes" comment="Servicio autenticacion" />
+    <list default="true" id="e7711a3c-55d9-4214-941e-ad51cb86e4c7" name="Changes" comment="Servicio autenticacion">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/taskService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/taskService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthModal.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,21 +30,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "LauraRo166"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LauraRo166&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioBejarano/frontEndTaskManagerWithReact.git",
-    "accountId": "508b129f-53fa-4ea1-9b3b-fa73cce60a75"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioBejarano/frontEndTaskManagerWithReact.git&quot;,
+    &quot;accountId&quot;: &quot;508b129f-53fa-4ea1-9b3b-fa73cce60a75&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2ndoniba0a7ytzGTbp31KMRHisS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -50,8 +55,9 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "develop01",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/USUARIO/Downloads/CNYT",
+    "last_opened_file_path": "C:/Users/USUARIO/Downloads/CVDS/React",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,6 +67,21 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="React" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="React" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -78,6 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729312483198</updated>
       <workItem from="1729312484374" duration="7772000" />
+      <workItem from="1729353084854" duration="3210000" />
     </task>
     <task id="LOCAL-00001" summary="Servicio autenticacion">
       <option name="closed" value="true" />
@@ -95,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729353004760</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Servicio autenticacion">
+      <option name="closed" value="true" />
+      <created>1729353197820</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729353197820</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,4 +1,5 @@
 const apiUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/api/tasks';
+//const apiUrl = 'http://localhost:8081/api/tasks';
 
 export async function fetchTasks() {
     try {
