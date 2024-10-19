@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { saveTask } from '../api/taskService';
+import '../styles/styleModal.css'
 
 const Modal = ({ isOpen, onClose }) => {
     // Manejo del estado de los campos del formulario
