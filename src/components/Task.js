@@ -14,10 +14,10 @@ const Task = ({ task, onComplete, onDelete }) => {
             <p><strong>Dificultad:</strong> {translateDifficulty(difficultyLevel)}</p>
             <p><strong>Prioridad:</strong> {priority}</p>
             <p><strong>Tiempo Promedio:</strong> {averageDevelopmentTime} horas</p>
-            <button onClick={() => onComplete(id)} disabled={completed}>
+            <button className={completed ? 'completed-btn' : 'complete-btn'} onClick={() => onComplete(id)} disabled={completed}>
                 {completed ? 'Task Complete' : 'Mark as Complete'}
             </button>
-            <button onClick={() => onDelete(id)}>Delete</button>
+            <button className="delete-btn" onClick={() => onDelete(id)}>Delete</button>
         </div>
     );
 };

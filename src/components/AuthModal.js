@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {login, signUp} from "../api/authService";
+import '../styles/styleModal.css'
 
 function AuthModal({ isOpen, onClose }) {
   const [isLogin, setIsLogin] = useState(true); // Estado para alternar entre login y registro
