@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7711a3c-55d9-4214-941e-ad51cb86e4c7" name="Changes" comment="Servicio autenticacion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/taskService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/taskService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthModal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729312483198</updated>
       <workItem from="1729312484374" duration="7772000" />
-      <workItem from="1729353084854" duration="3210000" />
+      <workItem from="1729353084854" duration="5266000" />
     </task>
     <task id="LOCAL-00001" summary="Servicio autenticacion">
       <option name="closed" value="true" />
@@ -125,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729353197820</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Servicio autenticacion">
+      <option name="closed" value="true" />
+      <created>1729356390358</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729356390358</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
