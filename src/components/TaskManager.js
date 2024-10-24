@@ -22,12 +22,8 @@ const TaskManager = () => {
             <h1>Task Manager</h1>
             <div className="button-content">
                 <button onClick={() => openModal('modal')} className="btn-add-task">Add Task</button>
-                <button onClick={() => {
-                }} className="automatic-button">Realise Automatic Tasks
-                </button>
-                <button onClick={() => {
-                }} className="del-automatic-button">Delete Automatic Tasks
-                </button>
+                <button onClick={() => {}} className="automatic-button">Realise Automatic Tasks</button>
+                <button onClick={() => {}} className="del-automatic-button">Delete Automatic Tasks</button>
             </div>
 
             <TaskList/>
