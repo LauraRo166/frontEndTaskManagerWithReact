@@ -1,22 +1,30 @@
-const authUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/auth';
-// const authUrl = 'http://localhost:8081/auth';
+//const authUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/auth';
+const authUrl = 'http://localhost:8081/auth';
 
-export async function login(user, password){
-    try{
+export async function login(user, password) {
+    try {
         const response = await fetch(`${authUrl}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: password}), // Revisar
+            body: JSON.stringify({ username: user, password: password }),
         });
-        if (!response.ok) {
-            throw new Error('Error login');
+
+        if (response.status === 401) {
+            return { error: 'Invalid credentials' };
         }
+
+        if (!response.ok) {
+            throw new Error('Unexpected error during login');
+        }
+
         return await response.json();
-    }   catch (error) {
-            console.error('Error login:', error);
-            return [];
+    } catch (error) {
+        console.error('Error login:', error);
+        return { error: 'Request failed' };
     }
 }
+
+
 
 export async function signUp(user, password){
     try{
