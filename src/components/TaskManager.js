@@ -17,7 +17,6 @@ const TaskManager = () => {
 
     return (
         <div className="main-content">
-            <button onClick={() => openModal('auth')}>Log in / Sign up</button>
 
             <h1>Task Manager</h1>
             <div className="button-content">

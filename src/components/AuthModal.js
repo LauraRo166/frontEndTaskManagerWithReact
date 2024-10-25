@@ -8,24 +8,31 @@ function AuthModal({ isOpen, onClose, type, onAuthSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (type === 'login') {
-      // Lógica de inicio de sesión
       console.log('Logging in with', { user, password });
-      const success = await login(user, password);
-      if (success) {
-        onAuthSuccess(); // Si el login es exitoso, redirige a la interfaz de tareas
+
+      const result = await login(user, password);
+
+      if (!result.error) {
+        onAuthSuccess();
         onClose();
+      } else {
+        alert(result.error);
       }
     } else {
-      // Lógica de registro
       console.log('Signing up with', { user, password });
+
       const success = await signUp(user, password);
+
       if (success) {
-        onAuthSuccess(); // Tras registro exitoso, también redirige a la interfaz de tareas
+        onAuthSuccess();
         onClose();
       }
     }
   };
+
+
 
   if (!isOpen) return null;
 
