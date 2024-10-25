@@ -1,9 +1,12 @@
 body {
-    background: linear-gradient(to bottom, white, #EAFAF1);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
+}
+
+.home {
+    background: linear-gradient(to bottom, white, #EAFAF1);
 }
 
 h1 {
@@ -13,7 +16,7 @@ h1 {
 }
 
 /* Estilo del contenedor principal */
-.content {
+.first-content {
     display: grid;
     grid-template-columns: 40% 60%;
     margin-left: 80px; /* Desplazar el contenido hacia la derecha para dar espacio al menú */

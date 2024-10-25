@@ -32,7 +32,7 @@ function App() {
         return (
             <div className="home">
                 <h1>Task Manager</h1>
-                <div className="content">
+                <div className="first-content">
                     <div className="left-content">
                         <p>Un sistema para ayudarte a organizar, priorizar y hacer seguimiento de todas tus tareas diarias de manera simple y eficiente.</p>
                         <div className="auth-buttons">
