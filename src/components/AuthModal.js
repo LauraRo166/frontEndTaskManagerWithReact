@@ -17,11 +17,12 @@ function AuthModal({ isOpen, onClose }) {
       console.log('Logging in with', { user, password });
       // Aquí podrías llamar a tu API de login con fetch/axios
       await login(user, password);
+      console.log('Logging in', { user, password });
     } else {
       // Lógica registro
       console.log('Signin up with', { user, password });
       // Aquí podrías llamar a tu API de registro con fetch/axios
-      await signUp(user, password);
+      console.log('Signing up', { user, password });
     }
   };
 
