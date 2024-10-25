@@ -1,13 +1,66 @@
 body {
+    background: linear-gradient(to bottom, white, #EAFAF1);
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
     margin: 0;
-    padding: 10px 20px;
+    padding: 0;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 60px;
 }
 
 /* Estilo del contenedor principal */
-.main-content {
+.content {
+    display: grid;
+    grid-template-columns: 40% 60%;
     margin-left: 80px; /* Desplazar el contenido hacia la derecha para dar espacio al menú */
     padding: 0 20px;
 }
+
+.left-content p {
+    font-size: 22px;
+    margin-top: 150px;
+}
+
+.auth-buttons button {
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-log {
+    padding: 12px 50px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-log:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el ratón */
+}
+
+.btn-sign {
+    background-color: transparent;
+    color: #4CAF50; /* Color de texto similar al borde */
+    border: 2px solid #4CAF50;
+    margin-left: 20px;
+    padding: 10px 48px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-sign:hover {
+    background-color: #4CAF50; /* Fondo al pasar el ratón */
+    color: white; /* Cambiar color del texto */
+}
+
+.right-content img {
+    margin-top: -20px;
+    width: 100%;
+}
+
+
+
