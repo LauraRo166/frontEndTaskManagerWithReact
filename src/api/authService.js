@@ -7,7 +7,6 @@ export async function login(user, password) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
-            credentials: 'include' // Enviar cookies de sesión
         });
 
         if (response.status === 401) {
@@ -28,11 +27,10 @@ export async function login(user, password) {
 
 export async function signUp(user, password) {
     try {
-        const response = await fetch(`${authUrl}/signUp`, {
+        const response = await fetch(`${authUrl}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
-            credentials: 'include' // Enviar cookies de sesión
         });
 
         if (!response.ok) {
