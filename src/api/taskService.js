@@ -1,10 +1,10 @@
 // const apiUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/api/tasks';
 const apiUrl = 'http://localhost:8081/api/tasks';
 
-const userName = localStorage.getItem('userName');
 
 export async function fetchTasks() {
     try {
+        const userName = localStorage.getItem('userName');
         const response = await fetch(`${apiUrl}/${userName}`, {
             method: 'GET',
             credentials: 'include' // Enviar cookies de sesión
@@ -23,6 +23,7 @@ export async function fetchTasks() {
 
 export async function saveTask(task) {
     try {
+        const userName = localStorage.getItem('userName');
         const response = await fetch(`${apiUrl}/${userName}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
