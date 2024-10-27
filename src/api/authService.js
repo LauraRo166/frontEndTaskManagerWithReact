@@ -7,17 +7,23 @@ export async function login(user, password) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
+            credentials: 'include', // Incluir cookies en la solicitud
         });
 
         if (response.status === 401) {
             return { error: 'Invalid credentials' };
         }
-
         if (!response.ok) {
             throw new Error('Unexpected error during login');
         }
 
-        return await response.json();
+        const data = await response.json();
+
+        localStorage.setItem('username', data.user);
+
+        console.log('Login successful:', data);
+  
+        return data;
     } catch (error) {
         console.error('Error login:', error);
         return { error: 'Request failed' };

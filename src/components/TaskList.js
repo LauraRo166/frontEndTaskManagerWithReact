@@ -4,7 +4,6 @@ import Task from './Task';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
-
     useEffect(() => {
         async function loadTasks() {
             const fetchedTasks = await fetchTasks();
