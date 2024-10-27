@@ -17,6 +17,7 @@ export async function login(user, password) {
         if (!response.ok) {
             throw new Error('Unexpected error during login');
         }
+        localStorage.removeItem('userName');
         localStorage.setItem('userName', user);
         return await response.json();
     } catch (error) {
