@@ -14,7 +14,8 @@ const TaskManager = () => {
     const closeModal = () => {
     setActiveModal(null);
     };
-
+    
+    
     return (
         <div className="main-content">
 

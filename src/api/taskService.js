@@ -1,9 +1,10 @@
 //const apiUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/api/tasks';
 const apiUrl = 'http://localhost:8081/api/tasks';
 
-const userName = localStorage.getItem('userName');
+
 
 export async function fetchTasks() {
+    const userName = localStorage.getItem('userName');
     try {
         const response = await fetch(`${apiUrl}/${userName}`, {
             method: 'GET',
@@ -22,8 +23,9 @@ export async function fetchTasks() {
 }
 
 export async function saveTask(task) {
+    const userName = localStorage.getItem('userName');
     try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch(`${apiUrl}/${userName}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -70,5 +72,25 @@ export async function deleteTask(taskId) {
         }
     } catch (error) {
         console.error('Error deleting task:', error);
+    }
+}
+
+export async function generateRandomTasks() {
+    const userName = localStorage.getItem('userName');
+    try {
+        const response = await fetch(`${apiUrl}/${userName}/task/randomTasks`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ completed: true }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error completing task');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error completing task:', error);
     }
 }

@@ -7,8 +7,8 @@ export async function login(user, password) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
-            credentials: 'include', // Incluir cookies en la solicitud
         });
+
 
         if (response.status === 401) {
             return { error: 'Invalid credentials' };
@@ -17,6 +17,7 @@ export async function login(user, password) {
         if (!response.ok) {
             throw new Error('Unexpected error during login');
         }
+
         localStorage.setItem('userName', user);
         return await response.json();
     } catch (error) {
@@ -31,7 +32,6 @@ export async function signUp(user, password) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
-            credentials: 'include' // Enviar cookies de sesión
         });
 
         if (!response.ok) {
