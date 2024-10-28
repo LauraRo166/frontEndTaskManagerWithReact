@@ -22,7 +22,6 @@ export async function login(user, password) {
 
         localStorage.removeItem('userName');
         localStorage.setItem('userName', user);
-        
         localStorage.removeItem('role');
         localStorage.setItem('role', data.roleId);
 
@@ -38,14 +37,21 @@ export async function signUp(user, password) {
         const response = await fetch(`${authUrl}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: password }),
+            body: JSON.stringify({ username: user, password: password, roleId: "1" }),
         });
 
         if (!response.ok) {
             throw new Error('Error Sign up');
         }
 
-        return await response.json();
+        const data = await response.json();
+
+        localStorage.removeItem('userName');
+        localStorage.setItem('userName', user);
+        localStorage.removeItem('role');
+        localStorage.setItem('role', data.roleId);
+
+        return data;
     } catch (error) {
         console.error('Error Sign up:', error);
         return { error: 'Request failed' };

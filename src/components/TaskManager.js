@@ -33,10 +33,10 @@ const TaskManager = () => {
 
             <h1>Task Manager</h1>
             <div className="button-content">
-                {role === 'user' && (
+                {role === '1' && (
                     <button onClick={() => openModal('modal')} className="btn-add-task">Add Task</button>
                 )}
-                {role === 'admin' && (
+                {role === '2' && (
                     <button onClick={fetchRandomTasks} className="automatic-button">Realise Automatic Tasks</button>
                 )}
                 <button onClick={handleDeleteAllTasks} className="del-automatic-button">Delete All Tasks</button>
