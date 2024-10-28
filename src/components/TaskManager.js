@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { generateRandomTasks, deleteAllTasks } from '../api/taskService';
 import TaskList from './TaskList';
 import Modal from './Modal';
+import UserModal from './UserModal';
 import AuthModal from './AuthModal';
-import '../styles/taskManager.css'
-const TaskManager = () => {
+import '../styles/taskManager.css';
+
+const TaskManager = ({ openUserModal }) => {
     const [activeModal, setActiveModal] = useState(null);
-    const [role, setRole] = useState(localStorage.getItem('role'));
+    const [role] = useState(localStorage.getItem('role'));
     const [tasks, setTasks] = useState([]);
 
     const openModal = (modalType) => {
         setActiveModal(modalType);
-        console.log(modalType)
+        console.log(modalType);
     };
-    
+
     const closeModal = () => {
-    setActiveModal(null);
+        setActiveModal(null);
     };
 
     const fetchRandomTasks = async () => {
@@ -27,10 +29,9 @@ const TaskManager = () => {
         await deleteAllTasks();
         setTasks([]);
     };
-    
+
     return (
         <div className="main-content">
-
             <h1>Task Manager</h1>
             <div className="button-content">
                 {role === '1' && (
@@ -44,9 +45,10 @@ const TaskManager = () => {
 
             <TaskList tasks={tasks} />
 
-            {activeModal === 'auth' && <AuthModal isOpen={true} onClose={closeModal} />} 
+            {activeModal === 'auth' && <AuthModal isOpen={true} onClose={closeModal} />}
             {activeModal === 'modal' && <Modal isOpen={true} onClose={closeModal} />}
-        </div> 
+            {activeModal === 'user' && <UserModal isOpen={true} onClose={closeModal} />}
+        </div>
     );
 };
 

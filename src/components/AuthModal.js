@@ -32,8 +32,6 @@ function AuthModal({ isOpen, onClose, type, onAuthSuccess }) {
     }
   };
 
-
-
   if (!isOpen) return null;
 
   return (

@@ -25,3 +25,9 @@
     height: 30px;
     color: #333333;
 }
+
+/* Contenedor del botón de usuario */
+.user-button {
+    margin-top: auto;
+    margin-bottom: 10px;
+}

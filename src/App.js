@@ -8,38 +8,40 @@ import BannerImg from './resources/undraw_Project_completed.png';
 import './styles/app.css';
 
 function App() {
-    const [currentPage, setCurrentPage] = useState('home'); // Pantalla inicial
-    const [authModalType, setAuthModalType] = useState(null); // Tipo de modal (login o signup)
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
-    const [userName, setUserName] = useState(''); // Nombre de usuario
-    const [isUserModalOpen, setIsUserModalOpen] = useState(false); // Estado del User Modal
+    const [currentPage, setCurrentPage] = useState('home');
+    const [authModalType, setAuthModalType] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false);
 
     const handleNavigation = (page) => {
         setCurrentPage(page);
     };
 
     const handleAuthSuccess = () => {
-        setIsAuthenticated(true); // Cuando el login sea exitoso, cambia el estado
-        setCurrentPage('taskManager'); // Redirige a la pantalla de tareas
+        setIsAuthenticated(true);
+        setCurrentPage('taskManager');
     };
 
     const handleLogout = () => {
-        setIsAuthenticated(false); // Restablece el estado de autenticación
-        setUserName(''); // Limpia el nombre de usuario
-        setCurrentPage('home'); // Redirige al inicio
-        setIsUserModalOpen(false); // Cierra el modal de usuario
+        setIsAuthenticated(false);
+        setCurrentPage('home');
+        setIsUserModalOpen(false);
     };
 
     const openAuthModal = (type) => {
-        setAuthModalType(type); // Define si es login o sign up
+        setAuthModalType(type);
     };
 
     const closeAuthModal = () => {
-        setAuthModalType(null); // Cierra el modal
+        setAuthModalType(null);
+    };
+
+    const openUserModal = () => {
+        setIsUserModalOpen(true);
     };
 
     const closeUserModal = () => {
-        setIsUserModalOpen(false); // Cierra el modal de usuario
+        setIsUserModalOpen(false);
     };
 
     if (!isAuthenticated && currentPage === 'home') {
@@ -63,7 +65,7 @@ function App() {
                         isOpen={authModalType !== null}
                         onClose={closeAuthModal}
                         type={authModalType}
-                        onAuthSuccess={handleAuthSuccess} // Pasa la función al modal
+                        onAuthSuccess={handleAuthSuccess}
                     />
                 )}
             </div>
@@ -72,15 +74,14 @@ function App() {
 
     return (
         <div className="app">
-            <Sidebar onNavigate={handleNavigation}/>
+            <Sidebar onNavigate={handleNavigation} openUserModal={openUserModal} />
             <div className="content">
-                {currentPage === 'taskManager' && <TaskManager/>}
-                {currentPage === 'insights' && <InsightsPage/>}
+                {currentPage === 'taskManager' && <TaskManager />}
+                {currentPage === 'insights' && <InsightsPage />}
             </div>
             <UserModal
                 isOpen={isUserModalOpen}
                 onClose={closeUserModal}
-                userName={userName}
                 onLogout={handleLogout}
             />
         </div>

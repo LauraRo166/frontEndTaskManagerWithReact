@@ -1,21 +1,24 @@
-import React from 'react';
-import '../styles/sidebar.css'; // Importar los estilos específicos del Sidebar
+import React, { useState } from 'react';
+import '../styles/sidebar.css';
 
-const role = localStorage.getItem('role');
 const Sidebar = ({ onNavigate, openUserModal }) => {
+    const [role] = useState(localStorage.getItem('role'));
+
     return (
         <div className="sidebar">
             <button onClick={() => onNavigate('taskManager')}>
                 <i className="fa-solid fa-list-check"></i>
             </button>
-            {role === "1" && (
+            {role === '2' && (
                 <button onClick={() => onNavigate('insights')}>
                     <i className="fa-solid fa-chart-column"></i>
                 </button>
             )}
-            <button onClick={openUserModal}>
-                <i className="fa-regular fa-user"></i>
-            </button>
+            <div className="user-button">
+                <button onClick={openUserModal}>
+                    <i className="fa-regular fa-user"></i>
+                </button>
+            </div>
         </div>
     );
 };
