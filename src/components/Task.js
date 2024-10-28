@@ -23,4 +23,3 @@ const Task = ({ task, onComplete, onDelete }) => {
 };
 
 export default Task;
-

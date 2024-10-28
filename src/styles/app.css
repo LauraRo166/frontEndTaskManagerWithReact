@@ -9,10 +9,12 @@ body {
     background: linear-gradient(to bottom, white, #EAFAF1);
 }
 
-h1 {
+.home h1 {
     text-align: center;
     color: #4CAF50;
     font-size: 60px;
+    margin: 0;
+    padding: 40px 0;
 }
 
 /* Estilo del contenedor principal */
