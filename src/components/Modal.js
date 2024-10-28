@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { saveTask } from '../api/taskService';
+import { fetchTasks } from '../api/taskService';
 import '../styles/styleModal.css'
 
 const Modal = ({ isOpen, onClose }) => {
@@ -34,6 +35,8 @@ const Modal = ({ isOpen, onClose }) => {
 
         // Cerrar el modal
         onClose();
+
+        await fetchTasks();
     };
 
     if (!isOpen) return null;
