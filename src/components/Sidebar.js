@@ -1,8 +1,7 @@
-// Sidebar.js
 import React from 'react';
 import '../styles/sidebar.css'; // Importar los estilos específicos del Sidebar
 
-const Sidebar = ({ onNavigate }) => {
+const Sidebar = ({ onNavigate, openUserModal }) => {
     return (
         <div className="sidebar">
             <button onClick={() => onNavigate('taskManager')}>
@@ -11,7 +10,11 @@ const Sidebar = ({ onNavigate }) => {
             <button onClick={() => onNavigate('insights')}>
                 <i className="fa-solid fa-chart-column"></i>
             </button>
-        </div>
+            <button onClick={openUserModal}>
+                <i className="fa-regular fa-user">
+            </i>
+        </button>
+</div>
     );
 };
 

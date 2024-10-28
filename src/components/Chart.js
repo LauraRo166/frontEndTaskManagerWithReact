@@ -1,4 +1,3 @@
-// Chart.js
 import React, { useEffect, useState } from 'react';
 import { fetchTasks } from './taskService';
 import { Bar, Line } from 'react-chartjs-2';

@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import TaskManager from './components/TaskManager';
 import InsightsPage from './components/InsightsPage';
 import AuthModal from './components/AuthModal';
+import UserModal from './components/UserModal';
 import BannerImg from './resources/undraw_Project_completed.png';
 import './styles/app.css';
 
@@ -10,6 +11,8 @@ function App() {
     const [currentPage, setCurrentPage] = useState('home'); // Pantalla inicial
     const [authModalType, setAuthModalType] = useState(null); // Tipo de modal (login o signup)
     const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
+    const [userName, setUserName] = useState(''); // Nombre de usuario
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false); // Estado del User Modal
 
     const handleNavigation = (page) => {
         setCurrentPage(page);
@@ -20,12 +23,23 @@ function App() {
         setCurrentPage('taskManager'); // Redirige a la pantalla de tareas
     };
 
+    const handleLogout = () => {
+        setIsAuthenticated(false); // Restablece el estado de autenticación
+        setUserName(''); // Limpia el nombre de usuario
+        setCurrentPage('home'); // Redirige al inicio
+        setIsUserModalOpen(false); // Cierra el modal de usuario
+    };
+
     const openAuthModal = (type) => {
         setAuthModalType(type); // Define si es login o sign up
     };
 
     const closeAuthModal = () => {
         setAuthModalType(null); // Cierra el modal
+    };
+
+    const closeUserModal = () => {
+        setIsUserModalOpen(false); // Cierra el modal de usuario
     };
 
     if (!isAuthenticated && currentPage === 'home') {
@@ -63,6 +77,12 @@ function App() {
                 {currentPage === 'taskManager' && <TaskManager/>}
                 {currentPage === 'insights' && <InsightsPage/>}
             </div>
+            <UserModal
+                isOpen={isUserModalOpen}
+                onClose={closeUserModal}
+                userName={userName}
+                onLogout={handleLogout}
+            />
         </div>
     );
 }
