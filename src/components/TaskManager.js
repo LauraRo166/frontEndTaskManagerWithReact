@@ -1,6 +1,5 @@
-// TaskManager.js
 import React, { useState, useEffect } from 'react';
-import { generateRandomTasks, deleteAllTasks, fetchTasks, saveTask } from '../api/taskService';
+import { generateRandomTasks, deleteAllTasks, fetchTasks, saveTask, completeTask, deleteTask } from '../api/taskService';
 import TaskList from './TaskList';
 import Modal from './Modal';
 import UserModal from './UserModal';
@@ -42,13 +41,27 @@ const TaskManager = ({ openUserModal }) => {
         setShouldFetch(true); // Marcar shouldFetch como true para refrescar
     };
 
+    const handleCompleteTask = async (taskId) => {
+        await completeTask(taskId);
+        setTasks(prevTasks =>
+            prevTasks.map(task =>
+                task.id === taskId ? { ...task, completed: true } : task
+            )
+        );
+    };
+
+    const handleDeleteTask = async (taskId) => {
+        await deleteTask(taskId);
+        setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+    };
+
     useEffect(() => {
         if (shouldFetch) {
             // Retraso de 2 segundos y luego obtener todas las tareas
             const fetchWithDelay = setTimeout(async () => {
                 await fetchAllTasks();
                 setShouldFetch(false); // Desactivar shouldFetch después de la actualización
-            }, 2000);
+            }, 1000);
 
             return () => clearTimeout(fetchWithDelay);
         }
@@ -71,7 +84,7 @@ const TaskManager = ({ openUserModal }) => {
                 <button onClick={handleDeleteAllTasks} className="del-automatic-button">Delete All Tasks</button>
             </div>
 
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} onComplete={handleCompleteTask} onDelete={handleDeleteTask} />
 
             {activeModal === 'auth' && <AuthModal isOpen={true} onClose={closeModal} />}
             {activeModal === 'modal' && <Modal isOpen={true} onClose={closeModal} onSave={handleAddTask} />}

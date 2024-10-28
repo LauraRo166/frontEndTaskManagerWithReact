@@ -27,7 +27,13 @@ export async function saveTask(task) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({ description: task.description, completed: false, difficultyLevel: task.levelDifficult, priority: task.priority, averageDevelopmentTime: task.averageTime }),
+            body: JSON.stringify({
+                description: task.description,
+                completed: false,
+                difficultyLevel: task.levelDifficult,
+                priority: task.priority,
+                averageDevelopmentTime: task.averageTime
+            }),
         });
 
         if (!response.ok) {
@@ -42,7 +48,8 @@ export async function saveTask(task) {
 
 export async function completeTask(taskId) {
     try {
-        const response = await fetch(`${apiUrl}/${taskId}/complete`, {
+        const user = localStorage.getItem('userName');
+        const response = await fetch(`${apiUrl}/${user}/${taskId}/complete`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -61,7 +68,8 @@ export async function completeTask(taskId) {
 
 export async function deleteTask(taskId) {
     try {
-        const response = await fetch(`${apiUrl}/${taskId}`, {
+        const user = localStorage.getItem('userName');
+        const response = await fetch(`${apiUrl}/${user}/${taskId}`, {
             method: 'DELETE',
             credentials: 'include'
         });
@@ -83,12 +91,12 @@ export async function generateRandomTasks() {
         });
 
         if (!response.ok) {
-            throw new Error('Error completing task');
+            throw new Error('Error generating random tasks');
         }
 
         return await response.json();
     } catch (error) {
-        console.error('Error completing tasks:', error);
+        console.error('Error generating random tasks:', error);
     }
 }
 
@@ -100,9 +108,9 @@ export async function deleteAllTasks() {
             credentials: 'include'
         });
         if (!response.ok) {
-            throw new Error('Error deleting tasks');
+            throw new Error('Error deleting all tasks');
         }
     } catch (error) {
-        console.error('Error deleting tasks:', error);
+        console.error('Error deleting all tasks:', error);
     }
 }

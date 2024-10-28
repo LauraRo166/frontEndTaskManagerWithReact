@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import { saveTask } from '../api/taskService';
-import { fetchTasks } from '../api/taskService';
-import '../styles/styleModal.css'
+import React, { useState } from 'react';
+import '../styles/styleModal.css';
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, onSave }) => {
     // Manejo del estado de los campos del formulario
     const [taskDescription, setTaskDescription] = useState('');
-    const [taskPriority, setTaskPriority] = useState(1); // Asumiendo que la prioridad es numérica
+    const [taskPriority, setTaskPriority] = useState(1);
     const [taskLevelDifficult, setTaskLevelDifficult] = useState('LOW');
     const [taskAverageTime, setTaskAverageTime] = useState(0);
 
@@ -24,8 +22,8 @@ const Modal = ({ isOpen, onClose }) => {
 
         console.log('New Task:', newTask); // Agrega esto para depuración
 
-        // Llamada a la función para agregar la tarea en el backend
-        await saveTask(newTask);
+        // Llamada a la función onSave pasada desde TaskManager para agregar la tarea
+        await onSave(newTask);
 
         // Limpiar los campos del formulario después de agregar la tarea
         setTaskDescription('');
@@ -35,8 +33,6 @@ const Modal = ({ isOpen, onClose }) => {
 
         // Cerrar el modal
         onClose();
-
-        await fetchTasks();
     };
 
     if (!isOpen) return null;
@@ -76,7 +72,7 @@ const Modal = ({ isOpen, onClose }) => {
                     >
                         <option value="LOW">Low</option>
                         <option value="MEDIUM">Medium</option>
-                        <option value="HIGH">Hard</option>
+                        <option value="HIGH">High</option>
                     </select>
 
                     <label htmlFor="taskAverageTime">Average Development Time:</label>
