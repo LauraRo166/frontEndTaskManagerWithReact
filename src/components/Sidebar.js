@@ -9,7 +9,7 @@ const Sidebar = ({ onNavigate }) => {
             <button onClick={() => onNavigate('taskManager')}>
                 <i className="fa-solid fa-list-check"></i>
             </button>
-            {role === '2' && (
+            {role === "2" && (
                 <button onClick={() => onNavigate('insights')}>
                     <i className="fa-solid fa-chart-column"></i>
                 </button>
