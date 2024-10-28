@@ -1,5 +1,6 @@
-const authUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/auth';
+//const authUrl = 'https://taskmanager-gjdfgpcndme0heaq.brazilsouth-01.azurewebsites.net/auth';
 //const authUrl = 'https://localhost:8443/auth';
+const authUrl = 'http://localhost:8081/auth';
 
 export async function login(user, password) {
     try {
