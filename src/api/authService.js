@@ -7,8 +7,8 @@ export async function login(user, password) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
+            credentials: 'include' // Enviar cookies de sesión
         });
-
 
         if (response.status === 401) {
             return { error: 'Invalid credentials' };
@@ -17,7 +17,7 @@ export async function login(user, password) {
         if (!response.ok) {
             throw new Error('Unexpected error during login');
         }
-
+        localStorage.removeItem('userName');
         localStorage.setItem('userName', user);
         return await response.json();
     } catch (error) {
@@ -28,7 +28,7 @@ export async function login(user, password) {
 
 export async function signUp(user, password) {
     try {
-        const response = await fetch(`${authUrl}/signUp`, {
+        const response = await fetch(`${authUrl}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: password }),
