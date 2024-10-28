@@ -74,13 +74,12 @@ export async function deleteTask(taskId) {
 }
 
 export async function generateRandomTasks() {
-    const userName = localStorage.getItem('userName');
     try {
-        const response = await fetch(`${apiUrl}/${userName}/task/randomTasks`, {
-            method: 'PUT',
+        const user = localStorage.getItem('userName');
+        const response = await fetch(`${apiUrl}/${user}/task/randomTasks`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ completed: true }),
+            credentials: 'include'
         });
 
         if (!response.ok) {
@@ -89,6 +88,21 @@ export async function generateRandomTasks() {
 
         return await response.json();
     } catch (error) {
-        console.error('Error completing task:', error);
+        console.error('Error completing tasks:', error);
+    }
+}
+
+export async function deleteAllTasks() {
+    try {
+        const user = localStorage.getItem('userName');
+        const response = await fetch(`${apiUrl}/${user}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+        if (!response.ok) {
+            throw new Error('Error deleting tasks');
+        }
+    } catch (error) {
+        console.error('Error deleting tasks:', error);
     }
 }

@@ -6,8 +6,8 @@ export async function login(user, password) {
         const response = await fetch(`${authUrl}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: password }),
-            credentials: 'include' // Enviar cookies de sesión
+            credentials: 'include',
+            body: JSON.stringify({ username: user, password: password })
         });
 
         if (response.status === 401) {
@@ -17,9 +17,16 @@ export async function login(user, password) {
         if (!response.ok) {
             throw new Error('Unexpected error during login');
         }
+
+        const data = await response.json();
+
         localStorage.removeItem('userName');
         localStorage.setItem('userName', user);
-        return await response.json();
+        
+        localStorage.removeItem('role');
+        localStorage.setItem('role', data.roleId);
+
+        return data;
     } catch (error) {
         console.error('Error login:', error);
         return { error: 'Request failed' };

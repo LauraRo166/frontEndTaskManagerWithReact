@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { saveTask } from '../api/taskService';
-import { fetchTasks } from '../api/taskService'
+import { fetchTasks } from '../api/taskService';
 import '../styles/styleModal.css'
 
 const Modal = ({ isOpen, onClose }) => {
@@ -9,8 +9,7 @@ const Modal = ({ isOpen, onClose }) => {
     const [taskPriority, setTaskPriority] = useState(1); // Asumiendo que la prioridad es numérica
     const [taskLevelDifficult, setTaskLevelDifficult] = useState('LOW');
     const [taskAverageTime, setTaskAverageTime] = useState(0);
-    const [tasks, setTasks] = useState([]);
-    
+
     // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previene el comportamiento por defecto del formulario
@@ -36,6 +35,8 @@ const Modal = ({ isOpen, onClose }) => {
 
         // Cerrar el modal
         onClose();
+
+        await fetchTasks();
     };
 
     if (!isOpen) return null;
