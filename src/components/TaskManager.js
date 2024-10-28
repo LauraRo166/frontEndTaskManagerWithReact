@@ -1,5 +1,6 @@
+// TaskManager.js
 import React, { useState, useEffect } from 'react';
-import { generateRandomTasks, deleteAllTasks } from '../api/taskService';
+import { generateRandomTasks, deleteAllTasks, fetchTasks, saveTask } from '../api/taskService';
 import TaskList from './TaskList';
 import Modal from './Modal';
 import UserModal from './UserModal';
@@ -10,25 +11,52 @@ const TaskManager = ({ openUserModal }) => {
     const [activeModal, setActiveModal] = useState(null);
     const [role] = useState(localStorage.getItem('role'));
     const [tasks, setTasks] = useState([]);
+    const [shouldFetch, setShouldFetch] = useState(false);
 
     const openModal = (modalType) => {
         setActiveModal(modalType);
-        console.log(modalType);
     };
 
     const closeModal = () => {
         setActiveModal(null);
     };
 
-    const fetchRandomTasks = async () => {
-        const tasks = await generateRandomTasks();
-        setTasks(tasks);
+    const fetchAllTasks = async () => {
+        const fetchedTasks = await fetchTasks();
+        setTasks(fetchedTasks);
     };
 
-    const handleDeleteAllTasks  = async () => {
+    const handleDeleteAllTasks = async () => {
         await deleteAllTasks();
-        setTasks([]);
+        setShouldFetch(true); // Marcar shouldFetch como true para refrescar
     };
+
+    const handleAddTask = async (newTask) => {
+        await saveTask(newTask);
+        setShouldFetch(true); // Marcar shouldFetch como true para refrescar
+        setActiveModal(null);
+    };
+
+    const fetchRandomTasks = async () => {
+        await generateRandomTasks();
+        setShouldFetch(true); // Marcar shouldFetch como true para refrescar
+    };
+
+    useEffect(() => {
+        if (shouldFetch) {
+            // Retraso de 2 segundos y luego obtener todas las tareas
+            const fetchWithDelay = setTimeout(async () => {
+                await fetchAllTasks();
+                setShouldFetch(false); // Desactivar shouldFetch después de la actualización
+            }, 2000);
+
+            return () => clearTimeout(fetchWithDelay);
+        }
+    }, [shouldFetch]);
+
+    useEffect(() => {
+        fetchAllTasks(); // Cargar tareas inicialmente
+    }, []);
 
     return (
         <div className="main-content">
@@ -46,7 +74,7 @@ const TaskManager = ({ openUserModal }) => {
             <TaskList tasks={tasks} />
 
             {activeModal === 'auth' && <AuthModal isOpen={true} onClose={closeModal} />}
-            {activeModal === 'modal' && <Modal isOpen={true} onClose={closeModal} />}
+            {activeModal === 'modal' && <Modal isOpen={true} onClose={closeModal} onSave={handleAddTask} />}
             {activeModal === 'user' && <UserModal isOpen={true} onClose={closeModal} />}
         </div>
     );
