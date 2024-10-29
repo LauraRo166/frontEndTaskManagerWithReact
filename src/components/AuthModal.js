@@ -2,10 +2,32 @@ import React, { useState } from 'react';
 import { login, signUp } from "../api/authService";
 import '../styles/styleModal.css'
 
+/**
+ * AuthModal component handles user authentication (login or signup) via a modal form.
+ * @component
+ * @param {Object} props - Component properties.
+ * @param {boolean} props.isOpen - Indicates if the modal is visible.
+ * @param {Function} props.onClose - Callback function to close the modal.
+ * @param {string} props.type - Determines if the modal is for 'login' or 'signup'.
+ * @param {Function} props.onAuthSuccess - Callback function triggered on successful authentication.
+ */
 function AuthModal({ isOpen, onClose, type, onAuthSuccess }) {
+
+  /**
+   * @typedef {Object} AuthModalState
+   * @property {string} user - Username input value.
+   * @property {string} password - Password input value.
+   */
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
+  /**
+   * Handles form submission for login or signup.
+   * @async
+   * @function
+   * @param {Event} e - The form submission event.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 

@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import '../styles/styleModal.css';
 
+/**
+ * Modal component for adding new tasks, including form fields for description, priority, difficulty level, and average time.
+ *
+ * @component
+ * @param {Object} props - Component properties.
+ * @param {boolean} props.isOpen - Controls modal visibility.
+ * @param {Function} props.onClose - Function to close the modal.
+ * @param {Function} props.onSave - Function to handle saving a new task.
+ * @returns {JSX.Element|null} The rendered modal component, or null if not open.
+ */
 const Modal = ({ isOpen, onClose, onSave }) => {
-    // Manejo del estado de los campos del formulario
     const [taskDescription, setTaskDescription] = useState('');
     const [taskPriority, setTaskPriority] = useState(1);
     const [taskLevelDifficult, setTaskLevelDifficult] = useState('LOW');
     const [taskAverageTime, setTaskAverageTime] = useState(0);
 
-    // Función para manejar el envío del formulario
+    /**
+     * Handles form submission, creates a new task, and calls onSave to add it.
+     * Clears form fields and closes the modal after saving.
+     * @async
+     * @param {Event} e - Form submit event.
+     */
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Previene el comportamiento por defecto del formulario
+        e.preventDefault();
 
-        // Crear la nueva tarea
         const newTask = {
             description: taskDescription,
             priority: taskPriority,
@@ -20,18 +33,15 @@ const Modal = ({ isOpen, onClose, onSave }) => {
             averageTime: taskAverageTime,
         };
 
-        console.log('New Task:', newTask); // Agrega esto para depuración
+        console.log('New Task:', newTask);
 
-        // Llamada a la función onSave pasada desde TaskManager para agregar la tarea
         await onSave(newTask);
 
-        // Limpiar los campos del formulario después de agregar la tarea
         setTaskDescription('');
         setTaskPriority(1);
         setTaskLevelDifficult('LOW');
         setTaskAverageTime(0);
 
-        // Cerrar el modal
         onClose();
     };
 

@@ -2,12 +2,17 @@
 //const apiUrl = 'https://localhost:8443/api/tasks';
 const apiUrl = 'http://localhost:8081/api/tasks';
 
+/**
+ * Fetches tasks for the logged-in user from the API.
+ * 
+ * @returns {Promise<Array>} A promise that resolves to an array of tasks.
+ */
 export async function fetchTasks() {
     try {
         const userName = localStorage.getItem('userName');
         const response = await fetch(`${apiUrl}/${userName}`, {
             method: 'GET',
-            credentials: 'include' // Enviar cookies de sesión
+            credentials: 'include'
         });
 
         if (!response.ok) {
@@ -21,6 +26,12 @@ export async function fetchTasks() {
     }
 }
 
+/**
+ * Saves a new task for the logged-in user to the API.
+ * 
+ * @param {Object} task - The task to be saved.
+ * @returns {Promise<Object>} A promise that resolves to the saved task object.
+ */
 export async function saveTask(task) {
     try {
         const userName = localStorage.getItem('userName');
@@ -47,6 +58,12 @@ export async function saveTask(task) {
     }
 }
 
+/**
+ * Marks a task as complete for the logged-in user in the API.
+ * 
+ * @param {string} taskId - The ID of the task to be completed.
+ * @returns {Promise<Object>} A promise that resolves to the updated task object.
+ */
 export async function completeTask(taskId) {
     try {
         const user = localStorage.getItem('userName');
@@ -67,6 +84,11 @@ export async function completeTask(taskId) {
     }
 }
 
+/**
+ * Deletes a specific task for the logged-in user from the API.
+ * 
+ * @param {string} taskId - The ID of the task to be deleted.
+ */
 export async function deleteTask(taskId) {
     try {
         const user = localStorage.getItem('userName');
@@ -82,6 +104,11 @@ export async function deleteTask(taskId) {
     }
 }
 
+/**
+ * Generates random tasks for the logged-in user using the API.
+ * 
+ * @returns {Promise<Array>} A promise that resolves to an array of generated tasks.
+ */
 export async function generateRandomTasks() {
     try {
         const user = localStorage.getItem('userName');
@@ -101,6 +128,9 @@ export async function generateRandomTasks() {
     }
 }
 
+/**
+ * Deletes all tasks for the logged-in user from the API.
+ */
 export async function deleteAllTasks() {
     try {
         const user = localStorage.getItem('userName');
