@@ -6,41 +6,74 @@ import UserModal from './UserModal';
 import AuthModal from './AuthModal';
 import '../styles/taskManager.css';
 
+/**
+ * TaskManager component that provides task management functionality.
+ * It allows users to add, complete, and delete tasks while managing modals for user interactions.
+ *
+ * @param {Function} openUserModal - Function to handle opening user modal.
+ */
 const TaskManager = ({ openUserModal }) => {
     const [activeModal, setActiveModal] = useState(null);
     const [role] = useState(localStorage.getItem('role'));
     const [tasks, setTasks] = useState([]);
     const [shouldFetch, setShouldFetch] = useState(false);
 
+    /**
+     * Opens the specified modal.
+     *
+     * @param {string} modalType - The type of modal to open.
+     */
     const openModal = (modalType) => {
         setActiveModal(modalType);
     };
 
+    /**
+     * Closes the currently active modal.
+     */
     const closeModal = () => {
         setActiveModal(null);
     };
 
+    /**
+     * Fetches all tasks from the API.
+     */
     const fetchAllTasks = async () => {
         const fetchedTasks = await fetchTasks();
         setTasks(fetchedTasks);
     };
 
+    /**
+     * Deletes all tasks and triggers a fetch for updated tasks.
+     */
     const handleDeleteAllTasks = async () => {
         await deleteAllTasks();
         setShouldFetch(true); // Marcar shouldFetch como true para refrescar
     };
 
+    /**
+     * Adds a new task and triggers a fetch for updated tasks.
+     *
+     * @param {Object} newTask - The task object to be added.
+     */
     const handleAddTask = async (newTask) => {
         await saveTask(newTask);
         setShouldFetch(true); // Marcar shouldFetch como true para refrescar
         setActiveModal(null);
     };
 
+    /**
+     * Generates random tasks and triggers a fetch for updated tasks.
+     */
     const fetchRandomTasks = async () => {
         await generateRandomTasks();
         setShouldFetch(true); // Marcar shouldFetch como true para refrescar
     };
 
+    /**
+     * Marks a task as complete and updates the local tasks state.
+     *
+     * @param {string} taskId - The ID of the task to be marked as complete.
+     */
     const handleCompleteTask = async (taskId) => {
         await completeTask(taskId);
         setTasks(prevTasks =>
@@ -50,6 +83,11 @@ const TaskManager = ({ openUserModal }) => {
         );
     };
 
+    /**
+     * Deletes a specified task and updates the local tasks state.
+     *
+     * @param {string} taskId - The ID of the task to be deleted.
+     */
     const handleDeleteTask = async (taskId) => {
         await deleteTask(taskId);
         setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));

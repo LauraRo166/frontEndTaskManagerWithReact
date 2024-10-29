@@ -2,6 +2,13 @@
 //const authUrl = 'https://localhost:8443/auth';
 const authUrl = 'http://localhost:8081/auth';
 
+/**
+ * Logs in a user with the provided username and password.
+ * 
+ * @param {string} user - The username of the user attempting to log in.
+ * @param {string} password - The password of the user attempting to log in.
+ * @returns {Promise<Object>} A promise that resolves to the user data or an error message.
+ */
 export async function login(user, password) {
     try {
         const response = await fetch(`${authUrl}/login`, {
@@ -33,6 +40,13 @@ export async function login(user, password) {
     }
 }
 
+/**
+ * Registers a new user with the provided username and password.
+ * 
+ * @param {string} user - The username of the new user.
+ * @param {string} password - The password of the new user.
+ * @returns {Promise<Object>} A promise that resolves to the user data or an error message.
+ */
 export async function signUp(user, password) {
     try {
         const response = await fetch(`${authUrl}/register`, {
