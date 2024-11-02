@@ -112,7 +112,7 @@ export async function deleteTask(taskId) {
 export async function generateRandomTasks() {
     try {
         const user = localStorage.getItem('userName');
-        const response = await fetch(`${apiUrl}/${user}/task/randomTasks`, {
+        const response = await fetch(`${apiUrl}/${user}/random-tasks`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
